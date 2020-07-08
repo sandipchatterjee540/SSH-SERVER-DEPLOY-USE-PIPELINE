@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db_host
+  namespace: jenkins
+spec:
+  selector:
+     matchLabels:
+        app: db_host
+  replicas: 1
+  template:
+     metadata:
+        labels:
+          app: db_host
+     spec:
+       containers:
+         - image: mysql:5.7
+           name: db_host
+           env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: sandip
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: db_host
+  namespace: jenkins
+spec:
+  selector:
+    app: db_host
+  ports:
+    - name: dbport
+      port: 3306
+  type: ClusterIP
+

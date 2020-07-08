@@ -7,6 +7,12 @@ RUN useradd remote_user && \
     chmod 700 /home/remote_user/.ssh
 
 COPY remote-key.pub /home/remote_user/.ssh/authorized_keys
+COPY put_db.sh /tmp/put_db.sh
+COPY people.txt /tmp/people.txt
+COPY BACKUP_UPLOAD_AWS_BUCKET.sh /tmp/BACKUP_UPLOAD_AWS_BUCKET.sh
+
+RUN chown remote_user:remote_user -R /tmp/ && \
+    chmod +x /tmp/*.sh
 
 RUN chown remote_user:remote_user -R /home/remote_user/.ssh/ && \
     chmod 600 /home/remote_user/.ssh/authorized_keys
