@@ -12,7 +12,7 @@ pipeline{
     stage('Checkout Source') {
       steps {
         sh 'echo ${BUILD_NUMBER}'
-        git 'https://github.com/sandipchatterjee540/play-jenkins-k8s.git'
+        git 'https://github.com/sandipchatterjee540/SSH-SERVER-DEPLOY-USE-PIPELINE.git'
       }
     }
 
@@ -37,7 +37,7 @@ pipeline{
     stage('Deploy App') {
       steps {
         script {
-          kubernetesDeploy(configs: "myweb.yaml", kubeconfigId: "KUBECONFIG")
+          kubernetesDeploy(configs: "sshapp.yaml", kubeconfigId: "KUBECONFIG")
         }
       }
     }
