@@ -54,7 +54,7 @@ pipeline{
       sshCommand remote: remote, command: "./tmp/put_db.sh"
     }
        
-  }
+}
 }
 
 
