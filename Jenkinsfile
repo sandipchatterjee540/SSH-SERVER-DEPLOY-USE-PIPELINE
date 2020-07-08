@@ -43,7 +43,7 @@ pipeline{
       }
     }
       
-    stage ('Deploy') {
+    stage ('SSH Connect') {
     steps{
         sshagent(credentials : ['SSH-SERVER']) {
             sh 'ssh -o StrictHostKeyChecking=no remote_user@remote_host whoami'
