@@ -38,9 +38,19 @@ pipeline{
       steps {
         script {
           kubernetesDeploy(configs: "sshapp.yaml", kubeconfigId: "KUBECONFIG")
+          kubernetesDeploy(configs: "db_host.yaml", kubeconfigId: "KUBECONFIG")
         }
       }
     }
+      
+    stage ('Deploy') {
+    steps{
+        sshagent(credentials : ['SSH-SERVER']) {
+            sh 'ssh -o StrictHostKeyChecking=no remote_user@remote_host whoami'
+           
+        }
+    }
+}
 
   }
 }
