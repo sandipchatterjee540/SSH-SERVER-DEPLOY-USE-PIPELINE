@@ -41,17 +41,17 @@ pipeline{
           kubernetesDeploy(configs: "db_host.yaml", kubeconfigId: "KUBECONFIG")
         }
       }
+    def remote = [:]
+    remote.name = 'test'
+    remote.host = 'ssh-server'
+    remote.user = 'root'
+    remote.password = 'sandip'
+    remote.allowAnyHosts = true
+    stage('Remote SSH') {
+      sshCommand remote: remote, command: "./tmp/put_db.sh"
     }
       
-    stage ('SSH Connect') {
-    steps{
-        sshagent(credentials : ['SSH-SERVER']) {
-            sh 'ssh -o StrictHostKeyChecking=no remote_user@ssh-server ./tmp/put_db.sh'
-           
-        }
-    }
-}
-
+    
   }
 }
 
