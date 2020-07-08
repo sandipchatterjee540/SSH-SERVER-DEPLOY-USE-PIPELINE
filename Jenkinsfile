@@ -1,4 +1,11 @@
 pipeline{
+    def remote = [:]
+    remote.name = 'test'
+    remote.host = 'ssh-server'
+    remote.user = 'root'
+    remote.password = 'sandip'
+    remote.allowAnyHosts = true
+    
 
     environment {
     registry = "192.168.43.26:5000/sandiptest/sshserver"
@@ -42,17 +49,11 @@ pipeline{
         }
       }
     }
-    def remote = [:]
-    remote.name = 'test'
-    remote.host = 'ssh-server'
-    remote.user = 'root'
-    remote.password = 'sandip'
-    remote.allowAnyHosts = true
+    
     stage('Remote SSH') {
       sshCommand remote: remote, command: "./tmp/put_db.sh"
     }
-      
-    
+       
   }
 }
 
