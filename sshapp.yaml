@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ssh-server
+spec:
+  selector:
+    matchLabels:
+      app: ssh-server
+  replicas: 1
+  template:
+    metadata:
+     labels:
+       app: ssh-server
+    spec:
+     containers:
+       - image: 192.168.43.26:5000/sandiptest/sshserver:${BUILD_NUMBER}
+         imagePullPolicy: Always
+         name: ssh-server
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ssh-server
+spec:
+  selector:
+   app: ssh-server
+  ports:
+   - name: ssh
+     port: 22
+     nodePort: 33333
+  type: NodePort
+
+
+
+
