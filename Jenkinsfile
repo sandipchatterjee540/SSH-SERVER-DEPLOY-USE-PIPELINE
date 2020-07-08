@@ -46,7 +46,7 @@ pipeline{
     stage ('SSH Connect') {
     steps{
         sshagent(credentials : ['SSH-SERVER']) {
-            sh 'ssh -o StrictHostKeyChecking=no remote_user@remote-host ./tmp/put_db.sh'
+            sh 'ssh -o StrictHostKeyChecking=no remote_user@ssh-server ./tmp/put_db.sh'
            
         }
     }
