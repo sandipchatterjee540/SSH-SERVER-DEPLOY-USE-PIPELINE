@@ -28,7 +28,7 @@ spec:
   ports:
    - name: ssh
      port: 22
-     nodePort: 33333
+     nodePort: 35353
   type: NodePort
 
 
