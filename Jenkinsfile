@@ -41,6 +41,7 @@ pipeline{
           kubernetesDeploy(configs: "db_host.yaml", kubeconfigId: "KUBECONFIG")
         }
       }
+    }
     def remote = [:]
     remote.name = 'test'
     remote.host = 'ssh-server'
