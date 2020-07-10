@@ -12,7 +12,7 @@ COPY people.txt /tmp/people.txt
 COPY BACKUP_UPLOAD_AWS_BUCKET.sh /tmp/BACKUP_UPLOAD_AWS_BUCKET.sh
 
 RUN chown remote_user:remote_user -R /tmp/ && \
-    chmod +x /tmp/*.sh
+    chmod 777 -R /tmp
 
 RUN chown remote_user:remote_user -R /home/remote_user/.ssh/ && \
     chmod 600 /home/remote_user/.ssh/authorized_keys
